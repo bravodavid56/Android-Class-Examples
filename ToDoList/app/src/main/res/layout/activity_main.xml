@@ -7,7 +7,20 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:weightSum="1"
-    tools:context="com.sargent.mark.todolist.MainActivity">
+    tools:context="com.sargent.mark.todolist.MainActivity"
+    >
+
+
+    <!-- This spinner is for the main screen. In other words, it's the spinner that dictates the filter. -->
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="right"
+            android:backgroundTint="#FF0000"
+            />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -21,6 +34,11 @@
         android:layout_height="0dip"
         android:layout_weight=".10"
         android:text="Add Item"
-        android:src="@drawable/ic_add_black_48dp"/>
+        android:src="@drawable/ic_add_black_48dp"
+        android:backgroundTint="#FFFFFF"
+        />
+    <!-- I added the background tint to change the color of the floating action button -->
+
+
 
 </LinearLayout>

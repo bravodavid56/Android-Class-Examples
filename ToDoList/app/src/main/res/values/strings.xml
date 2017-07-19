@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">ToDoList</string>
+    <string name="app_name"><font color="#000000">TODO Tracker</font></string>
+    <!-- The string array contains the preset items indicating categories for todoitems -->
+    <string-array name="todo_array">
+        <item>Default</item>
+        <item>Finance</item>
+        <item>School</item>
+        <item>Personal</item>
+        <item>Other</item>
+    </string-array>
 </resources>

@@ -11,7 +11,8 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
+    // version was upgraded when i updated the database to include the 'category' and 'done' columns
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "items.db";
     private static final String TAG = "dbhelper";
 
@@ -24,14 +25,30 @@ public class DBHelper extends SQLiteOpenHelper{
         String queryString = "CREATE TABLE " + Contract.TABLE_TODO.TABLE_NAME + " ("+
                 Contract.TABLE_TODO._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 Contract.TABLE_TODO.COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL, " +
-                Contract.TABLE_TODO.COLUMN_NAME_DUE_DATE + " DATE " + "); ";
+                Contract.TABLE_TODO.COLUMN_NAME_DUE_DATE + " DATE, " +
+                Contract.TABLE_TODO.COLUMN_NAME_CATEGORY + " TEXT NOT NULL," +
+                Contract.TABLE_TODO.COLUMN_NAME_DONE + " INTEGER NOT NULL" + "); ";
 
+        // I added the 'category' and 'done' columns in the query to create the table with all
+        // of the columns
         Log.d(TAG, "Create table SQL: " + queryString);
         db.execSQL(queryString);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        db.execSQL("drop table " + Contract.TABLE_TODO.TABLE_NAME + " if exists;");
+        db.execSQL("drop table " + Contract.TABLE_TODO.TABLE_NAME + " if exists;");
+        String queryString = "CREATE TABLE " + Contract.TABLE_TODO.TABLE_NAME + " ("+
+                Contract.TABLE_TODO._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                Contract.TABLE_TODO.COLUMN_NAME_DESCRIPTION + " TEXT NOT NULL, " +
+                Contract.TABLE_TODO.COLUMN_NAME_DUE_DATE + " DATE " +
+                Contract.TABLE_TODO.COLUMN_NAME_CATEGORY + " TEXT NOT NULL," +
+                Contract.TABLE_TODO.COLUMN_NAME_DONE + " INTEGER NOT NULL" + "); ";
+
+        // I added this to make sure that the table was created correctly with ALL of the columns
+        Log.d(TAG, "Create table SQL: " + queryString);
+        db.execSQL(queryString);
     }
+
+
 }
